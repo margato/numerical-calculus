@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
@@ -13116,7 +13117,35 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Regress&#227;o-linear">Regress&#227;o linear<a class="anchor-link" href="#Regress&#227;o-linear">&#182;</a></h1><h3 id="Autor:-Osvaldo-C&#233;sar-Cuba-Margato">Autor: Osvaldo C&#233;sar Cuba Margato<a class="anchor-link" href="#Autor:-Osvaldo-C&#233;sar-Cuba-Margato">&#182;</a></h3><h4 id="Linguagem-utilizada:-Python-3.6">Linguagem utilizada: Python 3.6<a class="anchor-link" href="#Linguagem-utilizada:-Python-3.6">&#182;</a></h4>
+<p><style>img[alt=curve] { height: 250px; }</style></p>
+<p><style>img[alt=unesp] { height: 100px; }</style>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logo_Unesp.svg/1200px-Logo_Unesp.svg.png" alt="unesp"></p>
+<h1 id="Regress&#227;o-linear">Regress&#227;o linear<a class="anchor-link" href="#Regress&#227;o-linear">&#182;</a></h1><h3 id="Autor:-Osvaldo-C&#233;sar-Cuba-Margato"><strong>Autor</strong>: Osvaldo C&#233;sar Cuba Margato<a class="anchor-link" href="#Autor:-Osvaldo-C&#233;sar-Cuba-Margato">&#182;</a></h3><h4 id="Linguagem-utilizada:-Python-3.6">Linguagem utilizada: Python 3.6<a class="anchor-link" href="#Linguagem-utilizada:-Python-3.6">&#182;</a></h4><p><hr></p>
+<h2 id="Introdu&#231;&#227;o">Introdu&#231;&#227;o<a class="anchor-link" href="#Introdu&#231;&#227;o">&#182;</a></h2><p>Regressão linear é o processo de, a partir de pontos dispersos em um gráfico, traçar uma reta para poder fazer previsões a partir desses dados.
+<img src="https://i.imgur.com/tuTsrBc.png" alt=""></p>
+<h2 id="Encontrar-a-equa&#231;&#227;o">Encontrar a equa&#231;&#227;o<a class="anchor-link" href="#Encontrar-a-equa&#231;&#227;o">&#182;</a></h2><p>Para encontrar uma equação com o menor erro possível que se relaciona com a dispersão dada no gráfico, utilizamos o <em>método dos mínimos quadrados</em>.</p>
+<p>Sabendo-se que a equação é do tipo:
+\begin{equation}
+y=a+bx
+\end{equation}</p>
+<p>Pelo método, temos o seguinte sistema para ajustar a reta:
+\begin{equation}
+\begin{cases}
+ (\sum_{i=1}^{n}x_{i}^2)a+(\sum_{i=1}^{n}x_{i})b=\sum_{i=1}^{n}x_if(x_i)\\
+ (\sum_{i=1}^{n}x_{i})a+nb=\sum_{i=1}^{n}f(x_i)
+ \end{cases}
+  \\
+ \text{Sendo } n = \text{Número de pontos}
+\end{equation}</p>
+<p>Logo:</p>
+\begin{equation}
+b = \dfrac{n(\sum_{i=1}^{n}x_if(x_i))-(\sum_{i=1}^{n}x_i))(\sum_{i=1}^{n}f(x_i))}{n(\sum_{i=1}^{n}x_{i}^2)-\sum_{i=1}^{n}x_{i}^2}
+\end{equation}\begin{equation}
+a = \dfrac{(\sum_{i=1}^{n}x_i^2)(\sum_{i=1}^{n}f(x_i))-(\sum_{i=1}^{n}x_if(x_i))(\sum_{i=1}^{n}x_i)}{n(\sum_{i=1}^{n}x_{i}^2)-\sum_{i=1}^{n}(x_{i})^2}
+\end{equation}<p>Com isso, descobrimos os parâmetros da reta e podemos traçá-la no gráfico.</p>
+<h1 id="Programa">Programa<a class="anchor-link" href="#Programa">&#182;</a></h1><p>No código abaixo, o método dos mínimos quadrados é implementado para traçar uma reta numa relação entre as décadas de 80 à 90 e a população da época em bilhão.</p>
+<hr>
+
 </div>
 </div>
 </div>
@@ -13129,7 +13158,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -13205,10 +13234,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">regression</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>  <span class="c1"># data: (x, y)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">regression</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>  
     <span class="n">alpha</span> <span class="o">=</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">population</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
         <span class="n">ln_population</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
@@ -13239,7 +13268,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_expression</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
@@ -13260,13 +13289,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get a + b * x coefficients</span>
-<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">regression</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">regression</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="c1"># Build expression</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">y</span><span class="p">,</span> <span class="n">expr</span> <span class="o">=</span> <span class="n">get_expression</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
@@ -13304,18 +13331,17 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot each tuple on graph</span>
-<span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">population</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">population</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">set_dpi</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
     
-<span class="c1"># Plot regression on graph</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Regressão linear&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Ano&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -13387,6 +13413,18 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Refer&#234;ncias-bibliogr&#225;ficas">Refer&#234;ncias bibliogr&#225;ficas<a class="anchor-link" href="#Refer&#234;ncias-bibliogr&#225;ficas">&#182;</a></h1><p><strong>Método dos mínimos quadrados: Caso discreto</strong><br>
+Disponivel em: <a href="http://conteudo.icmc.usp.br/pessoas/andretta/ensino/aulas/sme0500-1-13/aula8-quadmindisc.pdf">http://conteudo.icmc.usp.br/pessoas/andretta/ensino/aulas/sme0500-1-13/aula8-quadmindisc.pdf</a>. Acesso em: 27 nov. 2019.
+<br><br>
+<strong>Revisão sobre regressão linear</strong><br>
+Disponivel em: <a href="https://pt.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/introduction-to-trend-lines/a/linear-regression-review">https://pt.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/introduction-to-trend-lines/a/linear-regression-review</a>. Acesso em: 27 nov. 2019.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>

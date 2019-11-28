@@ -13116,13 +13116,36 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="M&#233;todo-da-bise&#231;&#227;o-para-encontrar-ra&#237;zes-de-uma-fun&#231;&#227;o">M&#233;todo da bise&#231;&#227;o para encontrar ra&#237;zes de uma fun&#231;&#227;o<a class="anchor-link" href="#M&#233;todo-da-bise&#231;&#227;o-para-encontrar-ra&#237;zes-de-uma-fun&#231;&#227;o">&#182;</a></h1><h3 id="Autor:-Osvaldo-C&#233;sar-Cuba-Margato">Autor: Osvaldo C&#233;sar Cuba Margato<a class="anchor-link" href="#Autor:-Osvaldo-C&#233;sar-Cuba-Margato">&#182;</a></h3><h4 id="Linguagem-utilizada:-Python-3.6">Linguagem utilizada: Python 3.6<a class="anchor-link" href="#Linguagem-utilizada:-Python-3.6">&#182;</a></h4>
+<p><style>img[alt=curve] { height: 250px; }</style></p>
+<p><style>img[alt=unesp] { height: 100px; }</style>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logo_Unesp.svg/1200px-Logo_Unesp.svg.png" alt="unesp"></p>
+<h1 id="M&#233;todo-da-bisse&#231;&#227;o">M&#233;todo da bisse&#231;&#227;o<a class="anchor-link" href="#M&#233;todo-da-bisse&#231;&#227;o">&#182;</a></h1><h3 id="Autor:-Osvaldo-C&#233;sar-Cuba-Margato"><strong>Autor</strong>: Osvaldo C&#233;sar Cuba Margato<a class="anchor-link" href="#Autor:-Osvaldo-C&#233;sar-Cuba-Margato">&#182;</a></h3><h4 id="Linguagem-utilizada:-Python-3.6">Linguagem utilizada: Python 3.6<a class="anchor-link" href="#Linguagem-utilizada:-Python-3.6">&#182;</a></h4><hr>
+
+<p>Segundo o teorema do valor intermediário, seja uma função <em>f</em> contínua no intervalo [a, b], com <em>f(a) . f(b)</em> &lt; 0: existe um zero no intervalo (a, b). Com isso em mente, o método da bisseção procura raízes no intervalo com o seguinte algoritmo:</p>
+<ul>
+<li>Define um ponto médio <em>c</em>:
+\begin{equation}
+c = \dfrac{(a + b)}{2}
+\end{equation}
+<br><br></li>
+<li>Checa em qual subintervalo o teorema continua válido. Ou seja, se <em>f(a) . f(c) &lt; 0</em>, então existe pelo menos uma raiz em <em>(a,c)</em>, senão, existe em <em>[c,b)</em>.</li>
+</ul>
+<ul>
+<li>Repetir o procedimento até que <em>c</em> se aproxime a raiz com a precisão desejada. </li>
+</ul>
+<hr>
+<h2 id="Aplica&#231;&#227;o">Aplica&#231;&#227;o<a class="anchor-link" href="#Aplica&#231;&#227;o">&#182;</a></h2><p>No programa abaixo, o método é aplicado na função:
+\begin{equation}
+f(x) = x^x-2x^2-32
+\end{equation}</p>
+<p>E com uma precisão desejada de <em>E &lt; 0.00001</em> e um intervalo inicial = [0, 10].</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">diff</span><span class="p">,</span> <span class="n">symbols</span>
@@ -13184,17 +13207,19 @@ div#notebook {
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro: Nenhuma raiz foi encontrada&quot;</span><span class="p">)</span>
             <span class="k">return</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Iterando n{n + 1}...&quot;</span><span class="p">)</span>
+        <span class="c1"># print(f&quot;Iterando n{n + 1}...&quot;)</span>
         <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">_xs</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
         <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;f(x)&#39;</span><span class="p">,</span> <span class="s1">&#39;|x(n) - x(n-1)|&#39;</span><span class="p">])</span>
     <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_xs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro: Nenhuma raiz foi encontrada&quot;</span><span class="p">)</span>
         <span class="k">return</span>
-
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raiz: &quot;</span><span class="p">,</span> <span class="n">_xs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
     <span class="c1">#print(df)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Um erro ocorreu&quot;</span><span class="p">)</span>
 </pre></div>
@@ -13213,22 +13238,11 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Função: (x+1) * 2 + x^2 - 2
-Intervalo inicial: -1 1
-Tolerância: 0.001
-f(x) = x**2 + 2*x
-Intervalo = [-1.0, 1.0]
-Iterando n1...
-Iterando n2...
-Iterando n3...
-Iterando n4...
-Iterando n5...
-Iterando n6...
-Iterando n7...
-Iterando n8...
-Iterando n9...
-Iterando n10...
-Iterando n11...
+<pre>Função: x^x-2*x^2-32
+Intervalo inicial: 0 10
+Tolerância: 0.00001
+f(x) = -2*x**2 + x**x - 32
+Intervalo = [0.0, 10.0]
 </pre>
 </div>
 </div>
@@ -13266,69 +13280,123 @@ Iterando n11...
   <tbody>
     <tr>
       <th>1</th>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>1.000000</td>
+      <td>5.000000</td>
+      <td>3043.00000000000</td>
+      <td>10.000000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.500000</td>
-      <td>-0.750000000000000</td>
-      <td>0.500000</td>
+      <td>2.500000</td>
+      <td>-34.6178823119738</td>
+      <td>2.500000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-0.250000</td>
-      <td>-0.437500000000000</td>
-      <td>0.250000</td>
+      <td>3.750000</td>
+      <td>81.9825833447745</td>
+      <td>1.250000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.125000</td>
-      <td>-0.234375000000000</td>
-      <td>0.125000</td>
+      <td>3.125000</td>
+      <td>-16.3422992224131</td>
+      <td>0.625000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>-0.062500</td>
-      <td>-0.121093750000000</td>
-      <td>0.062500</td>
+      <td>3.437500</td>
+      <td>14.0834834365383</td>
+      <td>0.312500</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>-0.031250</td>
-      <td>-0.0615234375000000</td>
-      <td>0.031250</td>
+      <td>3.281250</td>
+      <td>-4.18696828700566</td>
+      <td>0.156250</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>-0.015625</td>
-      <td>-0.0310058593750000</td>
-      <td>0.015625</td>
+      <td>3.359375</td>
+      <td>4.02946707978655</td>
+      <td>0.078125</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>-0.007812</td>
-      <td>-0.0155639648437500</td>
-      <td>0.007812</td>
+      <td>3.320312</td>
+      <td>-0.286752075531723</td>
+      <td>0.039062</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>-0.003906</td>
-      <td>-0.00779724121093750</td>
-      <td>0.003906</td>
+      <td>3.339844</td>
+      <td>1.81681183729848</td>
+      <td>0.019531</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>-0.001953</td>
-      <td>-0.00390243530273438</td>
-      <td>0.001953</td>
+      <td>3.330078</td>
+      <td>0.751721468077243</td>
+      <td>0.009766</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>-0.000977</td>
-      <td>-0.00195217132568359</td>
-      <td>0.000977</td>
+      <td>3.325195</td>
+      <td>0.229197712691779</td>
+      <td>0.004883</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>3.322754</td>
+      <td>-0.0295939663684308</td>
+      <td>0.002441</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>3.323975</td>
+      <td>0.0995970591972934</td>
+      <td>0.001221</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>3.323364</td>
+      <td>0.0349504202881619</td>
+      <td>0.000610</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>3.323059</td>
+      <td>0.00266545508585381</td>
+      <td>0.000305</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>3.322906</td>
+      <td>-0.0134674474034142</td>
+      <td>0.000153</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>3.322983</td>
+      <td>-0.00540179425006926</td>
+      <td>0.000076</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>3.323021</td>
+      <td>-0.00136836912378158</td>
+      <td>0.000038</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>3.323040</td>
+      <td>0.000648493093265756</td>
+      <td>0.000019</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>3.323030</td>
+      <td>-0.000359950486910066</td>
+      <td>0.000010</td>
     </tr>
   </tbody>
 </table>
@@ -13337,9 +13405,32 @@ Iterando n11...
 
 </div>
 
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Raiz:  3.323030471801758
+</pre>
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Refer&#234;ncias-bibliogr&#225;ficas">Refer&#234;ncias bibliogr&#225;ficas<a class="anchor-link" href="#Refer&#234;ncias-bibliogr&#225;ficas">&#182;</a></h1><p><strong>Método da bisseção</strong><br>
+Disponivel em: <a href="https://pt.wikipedia.org/wiki/M%C3%A9todo_da_bisse%C3%A7%C3%A3o">https://pt.wikipedia.org/wiki/M%C3%A9todo_da_bisse%C3%A7%C3%A3o</a>. Acesso em: 27 nov. 2019.
+<br><br>
+<strong>Método da bisseção</strong><br>
+Disponivel em: <a href="https://www.ufrgs.br/reamat/CalculoNumerico/livro-py/sdeduv-metodo_da_bissecao.html">https://www.ufrgs.br/reamat/CalculoNumerico/livro-py/sdeduv-metodo_da_bissecao.html</a>. Acesso em: 27 nov. 2019.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
